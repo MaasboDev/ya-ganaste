@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Ya Ganaste</string>
+    <string name="download_error">Error downloading data</string>
+    <string name="bank_icon">Bank Icon</string>
+</resources>
