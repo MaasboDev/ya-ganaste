@@ -29,11 +29,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
         compose true
@@ -69,18 +69,18 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
 
-    implementation "com.google.dagger:hilt-android:2.44"
+    implementation 'com.google.dagger:hilt-android:2.45'
     implementation 'junit:junit:4.13.2'
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    kapt 'com.google.dagger:hilt-compiler:2.45'
 
-    implementation "com.squareup.moshi:moshi:1.13.0"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.13.0"
+    implementation 'com.squareup.moshi:moshi:1.14.0'
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.14.0'
 
-    implementation("io.arrow-kt:arrow-core:1.1.2")
+    implementation('io.arrow-kt:arrow-core:1.1.6-alpha.33')
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation("org.amshove.kluent:kluent:1.68")
-    testImplementation("io.mockk:mockk:1.12.4")
+    testImplementation('org.amshove.kluent:kluent:1.72')
+    testImplementation('io.mockk:mockk:1.13.4')
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation "androidx.room:room-testing:2.5.0"
 

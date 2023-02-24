@@ -1,5 +1,6 @@
 package com.maasbodev.yaganaste.presentation.screens.main
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -22,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.maasbodev.yaganaste.R
@@ -64,9 +66,11 @@ fun MainScreen() {
 					fontStyle = FontStyle.Italic,
 					fontSize = 32.sp
 				)
-				is MainViewModel.ViewState.Success -> LazyColumn {
+				is MainViewModel.ViewState.Success -> LazyColumn(modifier = Modifier.padding(padding)) {
 					items((state as MainViewModel.ViewState.Success).banks) { Bank ->
-						BankCard(bank = Bank)
+						Box(modifier = Modifier.padding(4.dp)) {
+							BankCard(bank = Bank)
+						}
 					}
 				}
 			}
