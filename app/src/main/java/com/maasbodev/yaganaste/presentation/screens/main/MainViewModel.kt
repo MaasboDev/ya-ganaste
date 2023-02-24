@@ -14,31 +14,31 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-	private val bankRepository: BankRepository,
-	@IO private val dispatcher: CoroutineDispatcher,
+    private val bankRepository: BankRepository,
+    @IO private val dispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
-	private val _state = MutableStateFlow<ViewState>(ViewState.Loading)
-	val state: StateFlow<ViewState>
-		get() = _state
+    private val _state = MutableStateFlow<ViewState>(ViewState.Loading)
+    val state: StateFlow<ViewState>
+        get() = _state
 
-	init {
-		viewModelScope.launch(dispatcher) {
-			bankRepository.getBanks()
-				.fold(
-					{
-						_state.value = ViewState.Error(it)
-					},
-					{ banks ->
-						_state.value = ViewState.Success(banks)
-					}
-				)
-		}
-	}
+    init {
+        viewModelScope.launch(dispatcher) {
+            bankRepository.getBanks()
+                .fold(
+                    {
+                        _state.value = ViewState.Error(it)
+                    },
+                    { banks ->
+                        _state.value = ViewState.Success(banks)
+                    }
+                )
+        }
+    }
 
-	sealed class ViewState {
-		object Loading : ViewState()
-		data class Success(val banks: List<Bank>) : ViewState()
-		data class Error(val throwable: Throwable) : ViewState()
-	}
+    sealed class ViewState {
+        object Loading : ViewState()
+        data class Success(val banks: List<Bank>) : ViewState()
+        data class Error(val throwable: Throwable) : ViewState()
+    }
 }

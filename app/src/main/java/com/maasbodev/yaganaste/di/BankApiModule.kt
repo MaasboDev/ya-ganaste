@@ -13,21 +13,21 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @InstallIn(SingletonComponent::class)
 object BankApiModule {
 
-	@Provides
-	@Singleton
-	fun provideCountryApiService(builder: Retrofit.Builder): BankApiService {
-		return builder
-			.build()
-			.create(BankApiService::class.java)
-	}
+    @Provides
+    @Singleton
+    fun provideCountryApiService(builder: Retrofit.Builder): BankApiService {
+        return builder
+            .build()
+            .create(BankApiService::class.java)
+    }
 
-	@Provides
-	@Singleton
-	fun provideRetrofit(): Retrofit.Builder {
-		return Retrofit.Builder()
-			.baseUrl(BASE_URL)
-			.addConverterFactory(MoshiConverterFactory.create())
-	}
+    @Provides
+    @Singleton
+    fun provideRetrofit(): Retrofit.Builder {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
+    }
 }
 
 private const val BASE_URL = "https://dev.obtenmas.com/catom/api/challenge/"

@@ -32,48 +32,48 @@ import com.maasbodev.yaganaste.presentation.ui.BankCard
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-	val mainViewModel = viewModel(modelClass = MainViewModel::class.java)
-	val state by mainViewModel.state.collectAsState()
+    val mainViewModel = viewModel(modelClass = MainViewModel::class.java)
+    val state by mainViewModel.state.collectAsState()
 
-	Surface(
-		modifier = Modifier.fillMaxSize(),
-		color = MaterialTheme.colorScheme.background
-	) {
-		Scaffold(
-			topBar = {
-				TopAppBar(title = { Text(stringResource(id = R.string.app_name)) })
-			}
-		) { padding ->
-			when (state) {
-				MainViewModel.ViewState.Loading -> LazyColumn {
-					item {
-						CircularProgressIndicator(
-							modifier = Modifier
-								.padding(padding)
-								.fillMaxSize()
-								.wrapContentSize(align = Alignment.Center)
-						)
-					}
-				}
-				is MainViewModel.ViewState.Error -> Text(
-					text = stringResource(R.string.download_error),
-					modifier = Modifier
-						.padding(padding)
-						.fillMaxSize()
-						.wrapContentHeight(),
-					textAlign = TextAlign.Center,
-					fontWeight = FontWeight.Black,
-					fontStyle = FontStyle.Italic,
-					fontSize = 32.sp
-				)
-				is MainViewModel.ViewState.Success -> LazyColumn(modifier = Modifier.padding(padding)) {
-					items((state as MainViewModel.ViewState.Success).banks) { Bank ->
-						Box(modifier = Modifier.padding(4.dp)) {
-							BankCard(bank = Bank)
-						}
-					}
-				}
-			}
-		}
-	}
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        Scaffold(
+            topBar = {
+                TopAppBar(title = { Text(stringResource(id = R.string.app_name)) })
+            }
+        ) { padding ->
+            when (state) {
+                MainViewModel.ViewState.Loading -> LazyColumn {
+                    item {
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                                .padding(padding)
+                                .fillMaxSize()
+                                .wrapContentSize(align = Alignment.Center)
+                        )
+                    }
+                }
+                is MainViewModel.ViewState.Error -> Text(
+                    text = stringResource(R.string.download_error),
+                    modifier = Modifier
+                        .padding(padding)
+                        .fillMaxSize()
+                        .wrapContentHeight(),
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Black,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 32.sp
+                )
+                is MainViewModel.ViewState.Success -> LazyColumn(modifier = Modifier.padding(padding)) {
+                    items((state as MainViewModel.ViewState.Success).banks) { Bank ->
+                        Box(modifier = Modifier.padding(4.dp)) {
+                            BankCard(bank = Bank)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

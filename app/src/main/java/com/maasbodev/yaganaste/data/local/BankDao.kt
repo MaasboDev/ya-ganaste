@@ -7,9 +7,9 @@ import androidx.room.Query
 
 @Dao
 interface BankDao {
-	@Query("SELECT * FROM BankDbModel")
-	fun getAll(): List<BankDbModel>
+    @Query("SELECT * FROM BankDbModel")
+    fun getAll(): List<BankDbModel>
 
-	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	fun insert(banksDbModel: List<BankDbModel>)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(banksDbModel: List<BankDbModel>)
 }

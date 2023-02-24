@@ -21,32 +21,32 @@ import com.maasbodev.yaganaste.domain.model.Bank
 
 @Composable
 fun BankCard(bank: Bank) {
-	Card(
-		shape = MaterialTheme.shapes.medium,
-		modifier = Modifier.padding(8.dp),
-	) {
-		Box {
-			Surface(
-				color = MaterialTheme.colorScheme.onSurface.copy(alpha = .3f),
-				modifier = Modifier.align(Alignment.BottomCenter),
-				contentColor = MaterialTheme.colorScheme.surface
-			) {
-				Column(
-					modifier = Modifier
-						.fillMaxWidth()
-						.padding(16.dp)
-				) {
+    Card(
+        shape = MaterialTheme.shapes.medium,
+        modifier = Modifier.padding(8.dp),
+    ) {
+        Box {
+            Surface(
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = .3f),
+                modifier = Modifier.align(Alignment.BottomCenter),
+                contentColor = MaterialTheme.colorScheme.surface
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ) {
 
-					AsyncImage(
-						model = bank.url,
-						contentDescription = stringResource(R.string.bank_icon),
-						contentScale = ContentScale.Fit,
-						modifier = Modifier.size(100.dp)
-					)
-					Text(text = bank.bankName)
-					Text(text = bank.description)
-				}
-			}
-		}
-	}
+                    AsyncImage(
+                        model = bank.url,
+                        contentDescription = stringResource(R.string.bank_icon),
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier.size(100.dp)
+                    )
+                    Text(text = bank.bankName)
+                    Text(text = bank.description)
+                }
+            }
+        }
+    }
 }

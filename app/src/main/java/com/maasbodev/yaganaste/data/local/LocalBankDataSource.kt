@@ -8,20 +8,20 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
 class LocalBankDataSource @Inject constructor(
-	appDatabase: AppDatabase,
-	@IO private val dispatcher: CoroutineDispatcher,
+    appDatabase: AppDatabase,
+    @IO private val dispatcher: CoroutineDispatcher,
 ) {
 
-	@VisibleForTesting
-	val bankDao = appDatabase.bankDao()
+    @VisibleForTesting
+    val bankDao = appDatabase.bankDao()
 
-	suspend fun getBanks(): List<Bank> = withContext(dispatcher) {
-		bankDao.getAll().map {
-			it.toBank()
-		}
-	}
+    suspend fun getBanks(): List<Bank> = withContext(dispatcher) {
+        bankDao.getAll().map {
+            it.toBank()
+        }
+    }
 
-	suspend fun saveBanks(banks: List<Bank>) = withContext(dispatcher) {
-		bankDao.insert(banks.toBankDbModels())
-	}
+    suspend fun saveBanks(banks: List<Bank>) = withContext(dispatcher) {
+        bankDao.insert(banks.toBankDbModels())
+    }
 }

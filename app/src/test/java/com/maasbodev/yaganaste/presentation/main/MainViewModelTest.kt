@@ -22,52 +22,52 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class MainViewModelTest {
 
-	private val bankRepository: BankRepository = mockk(relaxed = true)
-	private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
+    private val bankRepository: BankRepository = mockk(relaxed = true)
+    private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
 
-	private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: MainViewModel
 
-	@Before
-	fun setUp() {
-		Dispatchers.setMain(testDispatcher)
-		viewModel = MainViewModel(bankRepository, testDispatcher)
-	}
+    @Before
+    fun setUp() {
+        Dispatchers.setMain(testDispatcher)
+        viewModel = MainViewModel(bankRepository, testDispatcher)
+    }
 
-	@After
-	fun tearDownDispatcher() {
-		Dispatchers.resetMain()
-	}
+    @After
+    fun tearDownDispatcher() {
+        Dispatchers.resetMain()
+    }
 
-	@Test
-	fun `GIVEN a success banks WHEN getBanks THEN get the expected call`() = runTest {
-		val banks = buildBanks()
-		coEvery { bankRepository.getBanks() } returns banks.right()
+    @Test
+    fun `GIVEN a success banks WHEN getBanks THEN get the expected call`() = runTest {
+        val banks = buildBanks()
+        coEvery { bankRepository.getBanks() } returns banks.right()
 
-		coVerify { bankRepository.getBanks() }
-	}
+        coVerify { bankRepository.getBanks() }
+    }
 
-	@Test
-	fun `GIVEN a failure banks WHEN getBanks THEN get the expected error`() = runTest {
-		coEvery { bankRepository.getBanks() } returns Throwable().left()
+    @Test
+    fun `GIVEN a failure banks WHEN getBanks THEN get the expected error`() = runTest {
+        coEvery { bankRepository.getBanks() } returns Throwable().left()
 
-		coVerify { bankRepository.getBanks() }
-	}
+        coVerify { bankRepository.getBanks() }
+    }
 
-	private fun buildBanks() = listOf(
-		buildBank(),
-		buildBank(),
-		buildBank(),
-	)
+    private fun buildBanks() = listOf(
+        buildBank(),
+        buildBank(),
+        buildBank(),
+    )
 
-	private fun buildBank() = Bank(
-		bankName = BANK_NAME,
-		description = DESCRIPTION,
-		age = AGE,
-		url = URL,
-	)
+    private fun buildBank() = Bank(
+        bankName = BANK_API_MODEL_NAME,
+        description = DESCRIPTION,
+        age = AGE,
+        url = URL,
+    )
 }
 
-private const val BANK_NAME = "A Bank Name"
+private const val BANK_API_MODEL_NAME = "A Bank Name"
 private const val DESCRIPTION = "A Bank Description"
 private const val AGE = 1
 private const val URL = "A Url"

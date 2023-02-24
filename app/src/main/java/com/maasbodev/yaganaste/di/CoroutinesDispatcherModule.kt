@@ -12,9 +12,9 @@ import kotlinx.coroutines.Dispatchers
 @Module
 object CoroutinesDispatcherModule {
 
-	@IO
-	@Provides
-	fun providesIODispatcher(): CoroutineDispatcher = Dispatchers.IO
+    @IO
+    @Provides
+    fun providesIODispatcher(): CoroutineDispatcher = Dispatchers.IO
 }
 
 @Retention(AnnotationRetention.RUNTIME)

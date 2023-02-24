@@ -12,11 +12,11 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object LocalDataModule {
 
-	@Provides
-	fun appDatabaseProvider(application: Application): AppDatabase =
-		Room.databaseBuilder(
-			application,
-			AppDatabase::class.java,
-			"banks-db"
-		).build()
+    @Provides
+    fun appDatabaseProvider(application: Application): AppDatabase =
+        Room.databaseBuilder(
+            application,
+            AppDatabase::class.java,
+            "banks-db"
+        ).build()
 }
