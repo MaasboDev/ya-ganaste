@@ -7,7 +7,9 @@ import com.maasbodev.yaganaste.data.local.LocalBankDataSource
 import com.maasbodev.yaganaste.data.remote.RemoteBankDataSource
 import com.maasbodev.yaganaste.domain.model.Bank
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BankRepository @Inject constructor(
 	private val localBankDataSource: LocalBankDataSource,
 	private val remoteBankDataSource: RemoteBankDataSource
