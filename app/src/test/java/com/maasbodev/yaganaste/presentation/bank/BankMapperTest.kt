@@ -1,4 +1,4 @@
-package com.maasbodev.yaganaste
+package com.maasbodev.yaganaste.presentation.bank
 
 import com.maasbodev.yaganaste.data.local.BankDbModel
 import com.maasbodev.yaganaste.data.local.toBank
