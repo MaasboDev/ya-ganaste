@@ -1,5 +1,4 @@
-# <p align="center">YA-GANASTE</p>
-## Bank Information Retrieval and Display in Jetpack Compose
+# Bank Information Retrieval and Display in Jetpack Compose
 
 This is a code test in Jetpack Compose that allows a user to retrieve bank information from an API and displays it in a list.  
 
